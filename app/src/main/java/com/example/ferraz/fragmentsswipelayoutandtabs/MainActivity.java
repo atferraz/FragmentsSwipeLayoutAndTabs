@@ -1,17 +1,21 @@
 package com.example.ferraz.fragmentsswipelayoutandtabs;
 
-import android.app.ActionBar;
-import android.support.v4.app.FragmentActivity;
+import android.annotation.TargetApi;
+import android.os.Build;
+import android.support.v7.app.ActionBar;
+//import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.widget.Button;
 
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends ActionBarActivity {
 
-    ActionBar actionBar;
+    ActionBar actionBar, actionBar2;
     static ViewPager viewPager = null;      // Criação de um ViewPager para controlo do
                                             // Slidding como atributo para acesso geral.
     @Override
@@ -20,14 +24,26 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.activity_main);
 
         //ActionBar
-        actionBar = getActionBar();
+        actionBar = getSupportActionBar();//getActionBar();
+        actionBar2 = getSupportActionBar();//getActionBar();
         // Preparação da actionBar para receber Tabs
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);    // desatualizado
 
         // Criar as TABs
-        ActionBar.Tab tab1 = actionBar.newTab();
-        tab1.setText("Tab 1");
+        //ActionBar.Tab tab1 = actionBar.newTab();
+        //tab1.setText("Tab 1");
         //tab1.setTabListener(this);
+
+        // Teste de versões para evitar métodos obsoletos e invalidar versões
+        if(android.os.Build.VERSION.SDK_INT > 11){
+            //inicia a action barUsa um método
+        }
+        else{
+            //usa outro
+        }
+
+
+
 
 
         // No arranque da activity liga-se o Viewpager ao Layout da activity
@@ -44,6 +60,7 @@ class MeuFragmentAdapter extends FragmentStatePagerAdapter {
     MeuFragmentAdapter(FragmentManager fm) {        // Recebe o fragment Adapter no contrutor.
         super(fm);
     }
+
 
     @Override
     public Fragment getItem(int position) {         // Devolve um dos Fragments, recebida a posição
