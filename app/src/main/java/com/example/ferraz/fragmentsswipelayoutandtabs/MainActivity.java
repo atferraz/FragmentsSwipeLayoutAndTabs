@@ -1,21 +1,18 @@
 package com.example.ferraz.fragmentsswipelayoutandtabs;
 
-import android.annotation.TargetApi;
-import android.os.Build;
-import android.support.v7.app.ActionBar;
-//import android.support.v4.app.FragmentActivity;
+import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.PagerTitleStrip;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.widget.Button;
+import android.util.TypedValue;
 
 
 public class MainActivity extends ActionBarActivity {
 
-    ActionBar actionBar, actionBar2;
     static ViewPager viewPager = null;      // Criação de um ViewPager para controlo do
                                             // Slidding como atributo para acesso geral.
     @Override
@@ -23,35 +20,18 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //ActionBar
-        actionBar = getSupportActionBar();//getActionBar();
-        actionBar2 = getSupportActionBar();//getActionBar();
-        // Preparação da actionBar para receber Tabs
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);    // desatualizado
-
-        // Criar as TABs
-        //ActionBar.Tab tab1 = actionBar.newTab();
-        //tab1.setText("Tab 1");
-        //tab1.setTabListener(this);
-
-        // Teste de versões para evitar métodos obsoletos e invalidar versões
-        if(android.os.Build.VERSION.SDK_INT > 11){
-            //inicia a action barUsa um método
-        }
-        else{
-            //usa outro
-        }
-
-
-
-
-
         // No arranque da activity liga-se o Viewpager ao Layout da activity
         viewPager = (ViewPager) findViewById(R.id.activityMain);
 
         // Associa o novo FragmentAdapter ao ViewPager
         FragmentManager fm = getSupportFragmentManager();   // da support.v4
         viewPager.setAdapter(new MeuFragmentAdapter(fm));
+
+        // Controlo da titleStrip
+        PagerTitleStrip titleStrip = (PagerTitleStrip) findViewById(R.id.tabTitle);
+        titleStrip.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 40);
+        titleStrip.setBackgroundColor(Color.BLACK);
+        titleStrip.setTextColor(Color.MAGENTA);
     }
 }
 
@@ -61,46 +41,32 @@ class MeuFragmentAdapter extends FragmentStatePagerAdapter {
         super(fm);
     }
 
+    @Override
+    public int getCount() {                         // devolve o nº de Fragments tratados nesta activity
+        return 5;
+    }                 // Devolve o nº de Fragments
 
     @Override
-    public Fragment getItem(int position) {         // Devolve um dos Fragments, recebida a posição
+    public Fragment getItem(int position) {             // Devolve um dos Fragments, recebida a positção
+
         Fragment fragment = null; //
 
-        if(position == 0){
-            fragment = new FragmentS1();
-        }
-        if(position == 1){
-            fragment = new FragmentS2();
-        }
-        if(position == 2){
-            fragment = new FragmentS3();
-        }
+        if(position == 0){fragment = new FragmentS1();}
+        if(position == 1){fragment = new FragmentS2();}
+        if(position == 2){fragment = new FragmentS3();}
+        if(position == 3){fragment = new FragmentS4();}
+        if(position == 4){fragment = new FragmentS5();}
         return fragment;
     }
 
-    @Override
-    public int getCount() {                         // devolve o nº de Fragments tratados nesta activity
-        return 3;
-    }
-
-
-    // Tratamento das TABs
-
-
-
-
-    @Override
+    @Override                                           // Tratamento das TABs
     public CharSequence getPageTitle(int position){
 
-        if(position == 0){      // Fragment S1
-            return "Tab1";
-        }
-        if(position == 1){      // Fragment S2
-            return "Tab2";
-        }
-        if(position == 3){      // Fragment S3
-            return "Tab1";
-        }
+        if(position == 0){return "Tab1";}   // Fragment S1
+        if(position == 1){return "Tab2";}   // Fragment S2
+        if(position == 2){return "Tab3";}   // Fragment S3
+        if(position == 3){return "Tab4";}   // Fragment S4
+        if(position == 4){return "Tab5";}   // Fragment S5
         return null;
     }
 }
