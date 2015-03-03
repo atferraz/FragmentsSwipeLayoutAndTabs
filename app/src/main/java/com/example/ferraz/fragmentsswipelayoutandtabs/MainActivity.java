@@ -32,6 +32,8 @@ public class MainActivity extends ActionBarActivity {
         titleStrip.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 40);
         titleStrip.setBackgroundColor(Color.BLACK);
         titleStrip.setTextColor(Color.MAGENTA);
+
+        viewPager.setCurrentItem(3);
     }
 }
 
