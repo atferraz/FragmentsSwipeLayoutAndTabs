@@ -1,4 +1,4 @@
-package com.example.ferraz.fragmentsswipelayoutandtabs;
+package com.example.ferrazdev.fragmentsswipelayoutandtabs;
 
 import android.graphics.Color;
 import android.support.v4.app.Fragment;

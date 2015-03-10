@@ -1,4 +1,4 @@
-package com.example.ferraz.fragmentsswipelayoutandtabs;
+package com.example.ferrazdev.fragmentsswipelayoutandtabs;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
